@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    /* Configurações de Módulo Modernas */
+    "target": "ES2022",                // Compila para o JavaScript moderno (compatível com Node 18+)
+    "module": "NodeNext",             // Usa o sistema de módulos mais recente do Node
+    "moduleResolution": "NodeNext",   // Diz como encontrar os módulos
+
+    /* Interoperabilidade */
+    "esModuleInterop": true,          // Permite 'import' de módulos CommonJS (como o Express)
+    "forceConsistentCasingInFileNames": true, // Evita erros de case em nomes de arquivos
+
+    /* Verificações Rigorosas (Boas Práticas) */
+    "strict": true,                   // Habilita todas as verificações de tipo rigorosas
+    "skipLibCheck": true,             // Pula a verificação de tipos em arquivos .d.ts (acelera a compilação)
+
+    /* Saída da Compilação */
+    "outDir": "./dist",               // Onde o JavaScript compilado será salvo (para produção)
+    "rootDir": "./src"                // Onde está o seu código TypeScript
+  },
+  "include": ["src/**/*"],              // Quais arquivos o TypeScript deve compilar
+  "exclude": ["node_modules"]           // Quais pastas ignorar
+}
