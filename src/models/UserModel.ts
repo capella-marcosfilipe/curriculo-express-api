@@ -2,24 +2,13 @@ import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from "../config/database";
 import bcrypt from "bcryptjs";
 
-interface UserAttributes {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-}
-
-type UserCreationAttributes = Optional<UserAttributes, "id">;
-
-class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
-    public id!: string;
-    public name!: string;
-    public email!: string;
-    public password!: string;
-
-    // Timestamps
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
+class User extends Model {
+    declare id: string;
+    declare name: string;
+    declare email: string;
+    declare password: string;
+    declare readonly createdAt: Date;
+    declare readonly updatedAt: Date;
 
     // Method to compare passwords
     public async comparePassword(candidatePassword: string): Promise<boolean> {
