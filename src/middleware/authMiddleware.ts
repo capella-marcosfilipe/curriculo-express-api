@@ -23,7 +23,7 @@ export const protect = async (req: Request, res: Response, next: NextFunction) =
 
             req.user = await User.findByPk(decoded.id, {
                 attributes: { exclude: ['password'] }
-            });
+            }) || null;
             
             if (!req.user) {
                  return res.status(401).json({ message: 'User not found' });
