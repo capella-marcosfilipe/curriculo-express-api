@@ -7,6 +7,7 @@ import experienceRoutes from './routes/experienceRoutes';
 import skillRoutes from './routes/skillRoutes';
 import projectRoutes from './routes/projectsRoutes';
 import statementRoutes from './routes/statementRoutes';
+import curriculumRoutes from './routes/curriculumRoutes';
 
 dotenv.config();
 
@@ -25,5 +26,6 @@ app.use('/api/experiences', experienceRoutes);
 app.use('/api/skills', skillRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/statements', statementRoutes);
+app.use('/api/curriculums', curriculumRoutes);
 
 export default app;
