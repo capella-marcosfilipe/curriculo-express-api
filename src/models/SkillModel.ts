@@ -1,49 +1,34 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 
-class Education extends Model {
+class Skill extends Model {
+    
     declare id: string;
-    declare institution: string;
-    declare degree: string; // ex.: Bacharelado, Tecnologo ...
-    declare fieldOfStudy: string; // ex.: Ciência da Computação, Administração ...
-    declare startDate: Date;
-    declare endDate: Date | null;
-
-    declare userId: string; // Foreign key to User model
+    declare name: string;
+    declare level: string | null;
+    declare userId: string;
 
     // Timestamps
     declare readonly createdAt: Date;
     declare readonly updatedAt: Date;
 }
 
-Education.init(
+Skill.init(
     {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        institution: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        degree: {
+        level: {
             type: DataTypes.STRING,
-            allowNull: false,
-        },
-        fieldOfStudy: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        startDate: {
-            type: DataTypes.DATE,
-            allowNull: false,
-        },
-        endDate: {
-            type: DataTypes.DATE,
             allowNull: true,
         },
-        // Foreign key to User model
+        // Foreign Key
         userId: {
             type: DataTypes.UUID,
             allowNull: false,
@@ -57,10 +42,10 @@ Education.init(
     },
     {
         sequelize,
-        modelName: 'Education',
-        tableName: 'educations',
+        modelName: 'Skill',
+        tableName: 'skills',
         timestamps: true,
     }
 );
 
-export default Education;
+export default Skill;

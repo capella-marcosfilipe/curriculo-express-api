@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { protect } from '../middleware/authMiddleware';
+import { protect } from '../middlewares/authMiddleware';
 import {
     createEducation,
     getEducations,

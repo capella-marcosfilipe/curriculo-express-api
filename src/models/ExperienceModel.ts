@@ -1,54 +1,53 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 
-class Education extends Model {
+class Experience extends Model {
     declare id: string;
-    declare institution: string;
-    declare degree: string; // ex.: Bacharelado, Tecnologo ...
-    declare fieldOfStudy: string; // ex.: Ciência da Computação, Administração ...
+    declare company: string;
+    declare title: string;
+    declare description: string | null;
     declare startDate: Date;
     declare endDate: Date | null;
-
-    declare userId: string; // Foreign key to User model
+    declare userId: string;
 
     // Timestamps
     declare readonly createdAt: Date;
     declare readonly updatedAt: Date;
 }
 
-Education.init(
+Experience.init(
     {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        institution: {
+        company: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        degree: {
+        title: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        fieldOfStudy: {
-            type: DataTypes.STRING,
-            allowNull: false,
+        description: {
+            type: DataTypes.TEXT,
+            allowNull: true,
         },
         startDate: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             allowNull: false,
         },
         endDate: {
-            type: DataTypes.DATE,
-            allowNull: true,
+            type: DataTypes.DATEONLY,
+            allowNull: true, // Current job
         },
         // Foreign key to User model
         userId: {
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'users',
+                model: 'users', // Table name in the database
                 key: 'id',
             },
             onUpdate: 'CASCADE',
@@ -57,10 +56,10 @@ Education.init(
     },
     {
         sequelize,
-        modelName: 'Education',
-        tableName: 'educations',
+        modelName: 'Experience',
+        tableName: 'experiences', // Table name in the database
         timestamps: true,
     }
 );
 
-export default Education;
+export default Experience;
