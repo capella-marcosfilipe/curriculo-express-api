@@ -1,11 +1,14 @@
 import app from "./app";
 import sequelize, { testConnection } from "./config/database";
+import { defineAssociations } from "./models/associations";
 
 const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
     try {
         await testConnection();
+
+        defineAssociations();
 
         await sequelize.sync();
         
