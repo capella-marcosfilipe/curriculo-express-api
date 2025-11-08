@@ -3,6 +3,8 @@ import Education from "./EducationModel";
 import Experience from "./ExperienceModel";
 import Skill from "./SkillModel";
 import Project from "./ProjectModel";
+import Statement from "./statementModel";
+import Curriculum from "./curriculumModel";
 
 export function defineAssociations() {
     // User <-> Education (1:N)
@@ -52,5 +54,70 @@ export function defineAssociations() {
     Project.belongsTo(User, {
         foreignKey: 'userId',
         as: 'user',
+    });
+
+    // User <-> Statement (1:N)
+    // A User can have multiple Statements
+    User.hasMany(Statement, { 
+        foreignKey: 'userId', 
+        as: 'statements' 
+    });
+    // A Statement belongs to a User
+    Statement.belongsTo(User, { 
+        foreignKey: 'userId', 
+        as: 'user' 
+    });
+
+    // User <-> Curriculum (1:N)
+    // A User can have multiple Curriculums
+    User.hasMany(Curriculum, { 
+        foreignKey: 'userId', 
+        as: 'curriculums' 
+    });
+    // A Curriculum belongs to a User
+    Curriculum.belongsTo(User, { 
+        foreignKey: 'userId', 
+        as: 'user' 
+    });
+
+    // Many-to-Many relationships
+    // curriculum <-> Education (N:M)
+    Curriculum.belongsToMany(Education, {
+        through: 'CurriculumEducations',
+        as: 'educations',
+    });
+    Education.belongsToMany(Curriculum, {
+        through: 'CurriculumEducations',
+        as: 'curriculums',
+    });
+
+    // curriculum <-> Experience (N:M)
+    Curriculum.belongsToMany(Experience, {
+        through: 'CurriculumExperiences',
+        as: 'experiences',
+    });
+    Experience.belongsToMany(Curriculum, {
+        through: 'CurriculumExperiences',
+        as: 'curriculums',
+    });
+
+    // curriculum <-> Skill (N:M)
+    Curriculum.belongsToMany(Skill, {
+        through: 'CurriculumSkills',
+        as: 'skills',
+    });
+    Skill.belongsToMany(Curriculum, {
+        through: 'CurriculumSkills',
+        as: 'curriculums',
+    });
+
+    // Curriculum <-> Project (N:M)
+    Curriculum.belongsToMany(Project, {
+        through: 'CurriculumProjects',
+        as: 'projects',
+    });
+    Project.belongsToMany(Curriculum, {
+        through: 'CurriculumProjects',
+        as: 'curriculums',
     });
 }
