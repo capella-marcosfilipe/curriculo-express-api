@@ -3,8 +3,8 @@ import Education from "./EducationModel";
 import Experience from "./ExperienceModel";
 import Skill from "./SkillModel";
 import Project from "./ProjectModel";
-import Statement from "./statementModel";
-import Curriculum from "./curriculumModel";
+import Statement from "./StatementModel";
+import Curriculum from "./CurriculumModel";
 
 export function defineAssociations() {
     // User <-> Education (1:N)
