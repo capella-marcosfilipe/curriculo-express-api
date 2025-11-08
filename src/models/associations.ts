@@ -2,6 +2,7 @@ import User from "./UserModel";
 import Education from "./EducationModel";
 import Experience from "./ExperienceModel";
 import Skill from "./SkillModel";
+import Project from "./ProjectModel";
 
 export function defineAssociations() {
     // User <-> Education (1:N)
@@ -37,6 +38,18 @@ export function defineAssociations() {
     });
     // Skill belongs to a User
     Skill.belongsTo(User, {
+        foreignKey: 'userId',
+        as: 'user',
+    });
+
+    // User <-> Project (1:N)
+    // User has many Projects
+    User.hasMany(Project, {
+        foreignKey: 'userId',
+        as: 'projects',
+    });
+    // Project belongs to a User
+    Project.belongsTo(User, {
         foreignKey: 'userId',
         as: 'user',
     });
