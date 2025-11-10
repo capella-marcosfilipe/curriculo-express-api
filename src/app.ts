@@ -9,6 +9,7 @@ import skillRoutes from './routes/skillRoutes';
 import projectRoutes from './routes/projectsRoutes';
 import statementRoutes from './routes/statementRoutes';
 import curriculumRoutes from './routes/curriculumRoutes';
+import aiRoutes from './routes/aiRoutes';
 
 dotenv.config();
 
@@ -30,5 +31,6 @@ app.use('/api/skills', skillRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/statements', statementRoutes);
 app.use('/api/curriculums', curriculumRoutes);
+app.use('/api/ai', aiRoutes);
 
 export default app;
