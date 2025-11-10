@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import authRoutes from './routes/authRoutes';
 import userRoutes from './routes/userRoutes';
 import educationRoutes from './routes/educationRoutes';
@@ -12,6 +13,8 @@ import curriculumRoutes from './routes/curriculumRoutes';
 dotenv.config();
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
