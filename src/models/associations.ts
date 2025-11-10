@@ -80,8 +80,20 @@ export function defineAssociations() {
         as: 'user' 
     });
 
-    // Many-to-Many relationships
-    // curriculum <-> Education (N:M)
+    // Curriculum <-> Statement (1:1)
+    // A Curriculum belongs to a Statement
+    Curriculum.belongsTo(Statement, { 
+        foreignKey: 'statementId', 
+        as: 'statement'
+    });
+
+    // A Statement can have many Curriculums
+    Statement.hasMany(Curriculum, {
+        foreignKey: 'statementId',
+        as: 'curriculums'
+    });
+
+    // Curriculum <-> Education (N:M)
     Curriculum.belongsToMany(Education, {
         through: 'CurriculumEducations',
         as: 'educations',
@@ -91,7 +103,7 @@ export function defineAssociations() {
         as: 'curriculums',
     });
 
-    // curriculum <-> Experience (N:M)
+    // Curriculum <-> Experience (N:M)
     Curriculum.belongsToMany(Experience, {
         through: 'CurriculumExperiences',
         as: 'experiences',
@@ -101,7 +113,7 @@ export function defineAssociations() {
         as: 'curriculums',
     });
 
-    // curriculum <-> Skill (N:M)
+    // Curriculum <-> Skill (N:M)
     Curriculum.belongsToMany(Skill, {
         through: 'CurriculumSkills',
         as: 'skills',

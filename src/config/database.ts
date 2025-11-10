@@ -17,7 +17,7 @@ const sequelize = new Sequelize(databaseUrl, {
             rejectUnauthorized: false
         }
     },
-    logging: false,
+    logging: console.log,
 });
 
 export async function testConnection() {

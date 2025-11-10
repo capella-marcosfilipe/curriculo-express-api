@@ -80,8 +80,6 @@ export const getCurriculumById = async (req: Request, res: Response) => {
 
         const curriculum = await Curriculum.findOne({
             where: { id: id, userId: userId },
-            // Here's the magic: Eager Loading
-            // We fetch the curriculum AND all its associated items
             include: [
                 { model: Statement, as: 'statement' }, // The summary (1:1)
                 { model: Education, as: 'educations', through: { attributes: [] } }, // N:M
@@ -138,7 +136,6 @@ const manageAssociation = async (
         }
 
         // 3. Execute the action (Add or Remove)
-        // Sequelize has magic methods like 'addEducation', 'removeSkill'
         const methodName = `${action}${associationName}`; // e.g.: "addEducation", "removeSkill"
         
         if (typeof (curriculum as any)[methodName] !== 'function') {
@@ -147,7 +144,6 @@ const manageAssociation = async (
 
         await (curriculum as any)[methodName](item, { transaction: t });
         
-        // If everything went well, commit the transaction
         await t.commit();
         
         const messageAction = action === 'add' ? 'added to' : 'removed from';
